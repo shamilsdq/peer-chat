@@ -1,0 +1,218 @@
+.window {
+    -fx-min-height: 560px;
+    -fx-min-width: 800px;
+    -fx-pref-height: 700px;
+    -fx-pref-width: 1000px;
+    -fx-max-height: Infinity;
+    -fx-max-width: Infinity;
+}
+
+.sidePanel {
+    -fx-min-height: 560px;
+    -fx-min-width: 300px;
+    -fx-pref-height: 700px;
+    -fx-pref-width: 300px;
+    -fx-max-height: Infinity;
+    -fx-max-width: 300px;
+    -fx-background-color: #333333;
+}
+
+.mainPanel {
+    -fx-min-height: 560px;
+    -fx-min-width: 500px;
+    -fx-pref-height: 700px;
+    -fx-pref-width: 700px;
+    -fx-max-height: Infinity;
+    -fx-max-width: Infinity;
+    -fx-background-color: #222222;
+}
+
+
+
+.sidePanelHeader {
+    -fx-min-height: 70px;
+    -fx-pref-height: 70px;
+    -fx-max-height: 70px;
+    -fx-alignment: center-left;
+    -fx-padding: 20px;
+}
+
+.sidePanelHeaderTitle {
+    -fx-text-fill: #777777;
+    -fx-font-family: 'Verdana';
+    -fx-font-size: 21px;
+    -fx-font-weight: 800;
+    -fx-min-width: 80px;
+}
+
+.sidePanelHeaderButton {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Verdana';
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    
+    -fx-min-width: 60px;
+    -fx-padding: 5px;
+    
+    -fx-border-width: 1px;
+    -fx-border-color: #3377FF;
+    -fx-border-radius: 30px;
+    
+    -fx-background-color: #3377FF;
+    -fx-background-radius: 5px;
+}
+
+.sidePanelScrollPane > .viewport {
+    -fx-background-color: transparent;
+}
+.sidePanelScrollPane {
+    -fx-background-color: transparent;
+    -fx-fit-to-width: true;
+    -fx-hbar-policy: as-needed;
+}
+
+.sidePanelScrollPaneVBox {
+    -fx-padding: 10px 20px 10px 20px;
+}
+
+.chatterButton {
+    -fx-text-fill: #FFFFFF;
+    -fx-text-alignment: center;
+    -fx-font-family: 'Verdana';
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    
+    -fx-min-width: 258px;
+    -fx-padding: 10px 15px 10px 15px;
+    
+    -fx-border-width: 0px;
+    -fx-border-color: transparent;
+    -fx-border-radius: 0px;
+    -fx-border-insets: 5px;
+    
+    -fx-background-color: #2C2C2C;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 2px 0px 2px 0px;
+}
+
+.sidePanelFooter {
+    -fx-min-height: 40px;
+    -fx-pref-height: 40px;
+    -fx-max-height: 40px;
+    -fx-alignment: center-left;
+    -fx-padding: 8px 20px 8px 20px;
+}
+
+.sidePanelFooterText {
+    -fx-text-fill: #777777;
+    -fx-font-family: 'Verdana';
+    -fx-font-size: 11px;
+    -fx-font-weight: 400;
+    -fx-min-width: 75px;
+}
+
+
+
+.mainPanelHeader {
+    -fx-min-height: 70px;
+    -fx-pref-height: 70px;
+    -fx-max-height: 70px;
+    -fx-alignment: center-left;
+    -fx-padding: 20px;
+    -fx-background-color: #292929;
+}
+
+.mainPanelHeaderTitle {
+    -fx-text-fill: #777777;
+    -fx-font-family: 'Verdana';
+    -fx-font-size: 18px;
+    -fx-font-weight: 500;
+    -fx-min-width: 80px;
+}
+
+.mainPanelScrollPane > .viewport {
+    -fx-background-color: transparent;
+}
+.mainPanelScrollPane {
+    -fx-background-color: transparent;
+    -fx-fit-to-width: true;
+    -fx-hbar-policy: as-needed;
+}
+
+.mainPanelScrollPaneVBox {
+    -fx-padding: 10px 20px 10px 20px;
+}
+
+.mainPanelFooter {
+    -fx-min-height: 70px;
+    -fx-pref-height: 70px;
+    -fx-max-height: 70px;
+    -fx-alignment: center-right;
+    -fx-padding: 20px;
+}
+
+.chatMessageInput {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Verdana';
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    
+    -fx-border-width: 0px;
+    -fx-border-radius: 0px;
+    
+    -fx-background-color: #555555;
+    -fx-background-radius: 5px;
+    
+    -fx-alignment: center-left;
+    -fx-padding: 8px 10px 8px 10px;
+}
+
+.chatMessageButton {
+    -fx-text-fill: #FFFFFF;
+    -fx-text-alignment: center;
+    -fx-font-family: 'Verdana';
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    
+    -fx-border-width: 0px;
+    -fx-border-radius: 0px;
+    
+    -fx-padding: 8px 15px 8px 25px;
+    
+    -fx-background-color: #3377FF;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0px 0px 0px 10px;
+}
+
+
+
+.messageWrapperLeft{
+    -fx-padding: 2px 0px 2px 0px;
+    -fx-alignment: center-left;
+}
+
+.messageWrapperRight {
+    -fx-padding: 2px 0px 2px 0px;
+    -fx-alignment: center-right;
+}
+
+
+.messageLeft {
+    -fx-background-color: #444444;
+    -fx-text-fill: #ffffff;
+    -fx-wrap-text: true;
+    -fx-padding: 8px 12px 8px 12px;
+    -fx-alignment: center-left;
+    -fx-pref-width: 300px;
+    -fx-max-width: 500px;
+}
+
+.messageRight {
+    -fx-background-color: #333333;
+    -fx-text-fill: #ffffff;
+    -fx-wrap-text: true;
+    -fx-padding: 8px 12px 8px 12px;
+    -fx-alignment: center-left;
+    -fx-pref-width: 300px;
+    -fx-max-width: 500px;
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" styleClass="window" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shamilsdq.peerchat.GUIController">
+   <left>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="sidePanel" BorderPane.alignment="CENTER">
+         <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="sidePanelHeader" BorderPane.alignment="CENTER">
+               <children>
+                  <Label styleClass="sidePanelHeaderTitle" text="CHATS" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" styleClass="sidePanelHeaderButton" text="ADD" />
+               </children>
+            </HBox>
+         </top>
+         <bottom>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="sidePanelFooter" BorderPane.alignment="CENTER">
+               <children>
+                  <Label styleClass="sidePanelFooterText" text="PORT: 5023" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <Hyperlink styleClass="sidePanelFooterText" text="\@shamilsdq" />
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" styleClass="sidePanelScrollPane" BorderPane.alignment="CENTER">
+               <content>
+                  <VBox id="chatterList" prefHeight="200.0" prefWidth="100.0" styleClass="sidePanelScrollPaneVBox" stylesheets="@style.css">
+                     <children>
+                        <Button mnemonicParsing="false" styleClass="chatterButton" text="CHATTER IP" />
+                        <Button mnemonicParsing="false" styleClass="chatterButton" text="CHATTER IP" />
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+   </left>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="mainPanel" BorderPane.alignment="CENTER">
+         <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="mainPanelHeader" BorderPane.alignment="CENTER_LEFT">
+               <children>
+                  <Label styleClass="mainPanelHeaderTitle" text="CHATTER IP" />
+               </children></HBox>
+         </top>
+         <bottom>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="mainPanelFooter" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField styleClass="chatMessageInput" HBox.hgrow="ALWAYS" />
+                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="chatMessageButton" text="SEND" />
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="mainPanelScrollPane" BorderPane.alignment="BOTTOM_LEFT">
+               <content>
+                  <VBox alignment="BOTTOM_LEFT" prefWidth="100.0" styleClass="mainPanelScrollPaneVBox">
+                     <children>
+                        <HBox prefWidth="200.0" styleClass="messageWrapperRight" VBox.vgrow="NEVER">
+                           <children>
+                              <Label styleClass="messageRight" text="A multi-line text to check if the text wraps properly when the text overflows the max width property of this label." />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="30.0" layoutY="113.0" prefWidth="200.0" styleClass="messageWrapperLeft">
+                           <children>
+                              <Label styleClass="messageLeft" text="A large reply to check to double check that text wrapping and width property behaves as it should." />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="30.0" layoutY="130.0" prefWidth="200.0" styleClass="messageWrapperLeft">
+                           <children>
+                              <Label styleClass="messageLeft" text="End." />
+                           </children>
+                        </HBox>
+                     </children></VBox>
+               </content>
+            </ScrollPane>
+         </center></BorderPane>
+   </center>
+</BorderPane>
