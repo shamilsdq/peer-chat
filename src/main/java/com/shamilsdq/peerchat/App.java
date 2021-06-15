@@ -18,7 +18,9 @@ public class App extends Application
     private static Scene scene;
     private static GUIController gui;
     private static NetworkController network;
+    
     private static Task receiveMessageTask;
+    private static Task sendMessageTask;
     
     private static HashMap<String, Chat> table;
     
@@ -37,6 +39,10 @@ public class App extends Application
         stage.setMinWidth(800.0);
         stage.setMinHeight(560.0);
         stage.show();
+        
+        // default chat with self
+        addChatter("127.0.0.1");
+        showChat("127.0.0.1");
     }
     
     
@@ -45,6 +51,7 @@ public class App extends Application
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("GUI.fxml"));
         scene = new Scene((Parent) fxmlLoader.load());
         gui = (GUIController) fxmlLoader.getController();
+        
     }
     
     private void initNetwork() 
@@ -64,7 +71,6 @@ public class App extends Application
                         try
                         {
                             count += 1;
-                            System.out.println("waiting for message " + count);
                             network.receiveMessage();
                         }
                         catch (SocketException ex) 
@@ -81,7 +87,7 @@ public class App extends Application
                     return null;
                 }
             };
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> App.receiveMessageTask.cancel()));
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> receiveMessageTask.cancel()));
             new Thread(receiveMessageTask).start();
         }
         catch (SocketException ex)
@@ -90,7 +96,6 @@ public class App extends Application
             gui.showError("Socket Exception encountered");
             Platform.exit();
         }
-        // TODO: initialize Network Components
     }
 
     
@@ -103,7 +108,7 @@ public class App extends Application
         }
     }
     
-    public static void showChatter(String chatter) 
+    public static void showChat(String chatter) 
     {
         if (table.containsKey(chatter))
             gui.showChat(chatter, table.get(chatter));
@@ -112,34 +117,50 @@ public class App extends Application
     
     public static void sendMessage()
     {
+        System.out.println("APP 1");
         String chatter = gui.getChatter();
         String messageContent = gui.getMessage();
+        System.out.println("APP 2");
         
         if (messageContent.trim().length() == 0) return;
         
-        try 
-        {
-            network.sendMessage(chatter, messageContent);
-        }
-        catch (SocketException ex) 
-        {
-            gui.showWarning("Socket Exception encountered");
-            return;
-        }
-        catch (UnknownHostException ex)
-        {
-            gui.showWarning("Unknown Host Exception encountered");
-            return;
-        }
-        catch (IOException ex) 
-        {
-            gui.showWarning("IO Exception encountered");
-            return;
-        }
+        System.out.println("APP 3");
+        sendMessageTask = new Task<Void>() {
+            @Override
+            protected Void call() {
+                try 
+                {
+                    network.sendMessage(chatter, messageContent);
+                }
+                catch (SocketException ex) 
+                {
+                    System.out.println(ex);
+                    gui.showWarning("Socket Exception occurred");
+                }
+                catch (UnknownHostException ex) 
+                {
+                    System.out.println(ex);
+                    gui.showWarning("UnknowHost Exception occurred");
+                }
+                catch (IOException ex) 
+                {
+                    System.out.println(ex);
+                    gui.showWarning("IO Exception occurred");
+                }
+                return null;
+            }
+        };
+        
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> sendMessageTask.cancel()));
+        new Thread(sendMessageTask).start();
+        
+        System.out.println("APP 4");
             
         Message message = new Message(messageContent, true);
         table.get(chatter).addMessage(message);
         gui.addMessage(chatter, message);
+        
+        System.out.println("APP 5");
     }
     
     public static void recieveMessage(String chatter, String messageContent)
@@ -152,15 +173,20 @@ public class App extends Application
         
         if (gui.getChatter().equals(chatter))
         {
+            System.out.flush();
             gui.addMessage(chatter, message);
         }
+        
+        System.out.flush();
     }
     
     
     @Override
     public void stop()
     {
+        sendMessageTask.cancel();
         receiveMessageTask.cancel();
+        network.close();
     }
     
     

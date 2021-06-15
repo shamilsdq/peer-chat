@@ -14,7 +14,7 @@ public class NetworkController
 {
     
     private final int PORT = 5023;
-    private final int TIMEOUT_MS = 500;
+    private final int TIMEOUT_MS = 100;
     private final int BUFFER_SIZE = 2048;
     
     private byte[] buffer;
@@ -40,21 +40,26 @@ public class NetworkController
     public void sendMessage(String chatter, String content) 
             throws SocketException, UnknownHostException, IOException
     {   
+        System.out.println("NW 1");
         byte[] temp = content.getBytes();
         this.packet.setData(temp);
         this.packet.setAddress(InetAddress.getByName(chatter));
         this.packet.setPort(PORT);
         
-        this.SENDLOCK = true;
-        while (this.RECEIVELOCK); // wait until lock is false
+        this.SENDLOCK = true; // send operation intended
+        System.out.println("NW 2");
+        
+        while (this.RECEIVELOCK); // wait until receive operation is over
+        System.out.println("NW 3");
         this.socket.send(this.packet);
-        this.SENDLOCK = false;
+        this.SENDLOCK = false; // send operation completed
+        System.out.println("NW 4");
     }
     
     public void receiveMessage() throws IOException, SocketTimeoutException
     {
-        while (this.SENDLOCK);// wait until lock is false
-        this.RECEIVELOCK = true;
+        while (this.SENDLOCK); // wait until send operation is completed
+        this.RECEIVELOCK = true; // receive operation started
         try
         {
             this.socket.receive(this.packet);
@@ -63,7 +68,19 @@ public class NetworkController
             App.recieveMessage(chatter, message);
         }
         catch (SocketTimeoutException ex){}
-        this.RECEIVELOCK = false;
+        this.RECEIVELOCK = false; // receive operation completed
+        
+        try 
+        {
+            Thread.sleep(50);
+        }
+        catch (Exception ex) {}
+        
     }
     
+    
+    public void close()
+    {
+        this.socket.close();
+    }
 }

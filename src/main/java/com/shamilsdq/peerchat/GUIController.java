@@ -61,10 +61,20 @@ public class GUIController
     
     public void addChatter(String chatterIp) 
     {
-        Button chatterButton = new Button(chatterIp);
-        chatterButton.setOnAction(new ChatterButtonHandler(chatterIp));
-        chatterButton.getStyleClass().add("chatterButton");
-        this.chatterListVBox.getChildren().add(chatterButton);
+        Platform.runLater
+        (
+            new Runnable() 
+            {
+                @Override
+                public void run()
+                {
+                    Button chatterButton = new Button(chatterIp);
+                    chatterButton.setOnAction(new ChatterButtonHandler(chatterIp));
+                    chatterButton.getStyleClass().add("chatterButton");
+                    chatterListVBox.getChildren().add(chatterButton);
+                }
+            }
+        );
     }
     
     public void addMessage(String chatter, Message msg) 
@@ -102,8 +112,7 @@ public class GUIController
     
     public void showChat(String newChatter, Chat newChat) 
     {
-        if (this.chatter != null && this.chatter.equals(newChatter))
-            return;
+        
         
         this.chatter = newChatter;
         this.chat = newChat;
@@ -180,7 +189,7 @@ public class GUIController
         @Override
         public void handle(ActionEvent e)
         {
-            App.showChatter(this.chatter);
+            App.showChat(this.chatter);
         }
     }
     

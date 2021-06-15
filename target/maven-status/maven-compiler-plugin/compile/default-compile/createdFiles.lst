@@ -6,6 +6,8 @@ com\shamilsdq\peerchat\Chat.class
 com\shamilsdq\peerchat\GUIController$1.class
 com\shamilsdq\peerchat\App$1.class
 module-info.class
+com\shamilsdq\peerchat\GUIController$2.class
 com\shamilsdq\peerchat\Message.class
 com\shamilsdq\peerchat\GUIController$ChatterAddButtonHandler.class
+com\shamilsdq\peerchat\App$2.class
 com\shamilsdq\peerchat\GUIController$MessageSendButtonHandler.class

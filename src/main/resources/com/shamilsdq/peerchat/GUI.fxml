@@ -34,12 +34,7 @@
          <center>
             <ScrollPane prefHeight="200.0" prefWidth="200.0" styleClass="sidePanelScrollPane" BorderPane.alignment="CENTER">
                <content>
-                  <VBox fx:id="chatterListVBox" prefWidth="100.0" styleClass="sidePanelScrollPaneVBox" stylesheets="@style.css">
-                     <children>
-                        <Button mnemonicParsing="false" styleClass="chatterButton" text="CHATTER IP" />
-                        <Button mnemonicParsing="false" styleClass="chatterButton" text="CHATTER IP" />
-                     </children>
-                  </VBox>
+                  <VBox fx:id="chatterListVBox" prefWidth="100.0" styleClass="sidePanelScrollPaneVBox" stylesheets="@style.css" />
                </content>
             </ScrollPane>
          </center>
@@ -67,21 +62,9 @@
                <content>
                   <VBox fx:id="messageListVBox" alignment="BOTTOM_LEFT" prefWidth="100.0" styleClass="mainPanelScrollPaneVBox">
                      <children>
-                        <HBox prefWidth="200.0" styleClass="messageWrapperRight" VBox.vgrow="NEVER">
-                           <children>
-                              <Label styleClass="messageRight" text="A multi-line text to check if the text wraps properly when the text overflows the max width property of this label." />
-                           </children>
-                        </HBox>
-                        <HBox layoutX="30.0" layoutY="113.0" prefWidth="200.0" styleClass="messageWrapperLeft">
-                           <children>
-                              <Label styleClass="messageLeft" text="A large reply to check to double check that text wrapping and width property behaves as it should." />
-                           </children>
-                        </HBox>
-                        <HBox layoutX="30.0" layoutY="130.0" prefWidth="200.0" styleClass="messageWrapperLeft">
-                           <children>
-                              <Label styleClass="messageLeft" text="End." />
-                           </children>
-                        </HBox>
+                        <HBox prefWidth="200.0" styleClass="messageWrapperRight" VBox.vgrow="NEVER" />
+                        <HBox layoutX="30.0" layoutY="113.0" prefWidth="200.0" styleClass="messageWrapperLeft" />
+                        <HBox layoutX="30.0" layoutY="130.0" prefWidth="200.0" styleClass="messageWrapperLeft" />
                      </children></VBox>
                </content>
             </ScrollPane>
