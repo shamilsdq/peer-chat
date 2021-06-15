@@ -1,10 +1,11 @@
-com\shamilsdq\peerchat\App$1.class
-module-info.class
 com\shamilsdq\peerchat\GUIController.class
-com\shamilsdq\peerchat\Message.class
-com\shamilsdq\peerchat\GUIController$ChatterAddButtonHandler.class
 com\shamilsdq\peerchat\GUIController$ChatterButtonHandler.class
 com\shamilsdq\peerchat\NetworkController.class
 com\shamilsdq\peerchat\App.class
-com\shamilsdq\peerchat\GUIController$MessageSendButtonHandler.class
 com\shamilsdq\peerchat\Chat.class
+com\shamilsdq\peerchat\GUIController$1.class
+com\shamilsdq\peerchat\App$1.class
+module-info.class
+com\shamilsdq\peerchat\Message.class
+com\shamilsdq\peerchat\GUIController$ChatterAddButtonHandler.class
+com\shamilsdq\peerchat\GUIController$MessageSendButtonHandler.class

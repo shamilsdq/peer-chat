@@ -6,6 +6,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -17,6 +18,7 @@ public class App extends Application
     private static Scene scene;
     private static GUIController gui;
     private static NetworkController network;
+    private static Task receiveMessageTask;
     
     private static HashMap<String, Chat> table;
     
@@ -50,14 +52,19 @@ public class App extends Application
         try 
         {
             network = new NetworkController();
-            Thread thread = new Thread(new Runnable() {
+            receiveMessageTask = new Task<Void>() {
                 @Override
-                public void run() {
+                protected Void call() {
+                    int count = 0;
                     while (true)
                     {
+                        if (isCancelled()) 
+                            break;
+                        
                         try
                         {
-                            System.out.println("waiting for message");
+                            count += 1;
+                            System.out.println("waiting for message " + count);
                             network.receiveMessage();
                         }
                         catch (SocketException ex) 
@@ -69,13 +76,17 @@ public class App extends Application
                         {
                             System.out.println(ex);
                             gui.showWarning("IO Exception occurred");
-                        }
+                        }   
                     }
+                    return null;
                 }
-            });
+            };
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> App.receiveMessageTask.cancel()));
+            new Thread(receiveMessageTask).start();
         }
         catch (SocketException ex)
         {
+            System.out.println(ex);
             gui.showError("Socket Exception encountered");
             Platform.exit();
         }
@@ -143,6 +154,13 @@ public class App extends Application
         {
             gui.addMessage(chatter, message);
         }
+    }
+    
+    
+    @Override
+    public void stop()
+    {
+        receiveMessageTask.cancel();
     }
     
     

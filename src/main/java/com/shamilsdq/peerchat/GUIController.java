@@ -1,6 +1,7 @@
 package com.shamilsdq.peerchat;
 
 import java.util.ArrayList;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -71,22 +72,32 @@ public class GUIController
         if (this.chatter.equals(chatter) == false) 
             return;
         
-        HBox hbox = new HBox();
-        Label label = new Label(msg.getContent());
+        Platform.runLater
+        (
+            new Runnable() 
+            {
+                @Override
+                public void run()
+                {
+                    HBox hbox = new HBox();
+                    Label label = new Label(msg.getContent());
         
-        if (msg.getIsSent())
-        {
-            hbox.getStyleClass().add("messageWrapperRight");
-            label.getStyleClass().add("messageRight");
-        }
-        else
-        {
-            hbox.getStyleClass().add("messageWrapperLeft");
-            label.getStyleClass().add("messageLeft");
-        }
-            
-        hbox.getChildren().add(label);
-        this.messageListVBox.getChildren().add(hbox);
+                    if (msg.getIsSent())
+                    {
+                        hbox.getStyleClass().add("messageWrapperRight");
+                        label.getStyleClass().add("messageRight");
+                    }
+                    else
+                    {
+                        hbox.getStyleClass().add("messageWrapperLeft");
+                        label.getStyleClass().add("messageLeft");
+                    }
+                    
+                    hbox.getChildren().add(label);
+                    messageListVBox.getChildren().add(hbox);
+                }
+            }
+        );
     }
     
     public void showChat(String newChatter, Chat newChat) 
