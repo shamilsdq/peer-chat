@@ -18,7 +18,7 @@
                <children>
                   <Label styleClass="sidePanelHeaderTitle" text="CHATS" />
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" styleClass="sidePanelHeaderButton" text="ADD" />
+                  <Button fx:id="chatterAddButton" mnemonicParsing="false" styleClass="sidePanelHeaderButton" text="ADD" />
                </children>
             </HBox>
          </top>
@@ -34,7 +34,7 @@
          <center>
             <ScrollPane prefHeight="200.0" prefWidth="200.0" styleClass="sidePanelScrollPane" BorderPane.alignment="CENTER">
                <content>
-                  <VBox id="chatterList" prefHeight="200.0" prefWidth="100.0" styleClass="sidePanelScrollPaneVBox" stylesheets="@style.css">
+                  <VBox fx:id="chatterListVBox" prefWidth="100.0" styleClass="sidePanelScrollPaneVBox" stylesheets="@style.css">
                      <children>
                         <Button mnemonicParsing="false" styleClass="chatterButton" text="CHATTER IP" />
                         <Button mnemonicParsing="false" styleClass="chatterButton" text="CHATTER IP" />
@@ -50,21 +50,22 @@
          <top>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="mainPanelHeader" BorderPane.alignment="CENTER_LEFT">
                <children>
-                  <Label styleClass="mainPanelHeaderTitle" text="CHATTER IP" />
-               </children></HBox>
+                  <Label fx:id="chatterIpLabel" styleClass="mainPanelHeaderTitle" text="CHATTER IP" />
+               </children>
+            </HBox>
          </top>
          <bottom>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="mainPanelFooter" BorderPane.alignment="CENTER">
                <children>
-                  <TextField styleClass="chatMessageInput" HBox.hgrow="ALWAYS" />
-                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="chatMessageButton" text="SEND" />
+                  <TextField fx:id="messageInputTextField" styleClass="chatMessageInput" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="messageSendButton" alignment="CENTER" mnemonicParsing="false" styleClass="chatMessageButton" text="SEND" />
                </children>
             </HBox>
          </bottom>
          <center>
             <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="mainPanelScrollPane" BorderPane.alignment="BOTTOM_LEFT">
                <content>
-                  <VBox alignment="BOTTOM_LEFT" prefWidth="100.0" styleClass="mainPanelScrollPaneVBox">
+                  <VBox fx:id="messageListVBox" alignment="BOTTOM_LEFT" prefWidth="100.0" styleClass="mainPanelScrollPaneVBox">
                      <children>
                         <HBox prefWidth="200.0" styleClass="messageWrapperRight" VBox.vgrow="NEVER">
                            <children>
