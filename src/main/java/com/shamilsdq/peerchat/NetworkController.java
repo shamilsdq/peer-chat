@@ -14,7 +14,7 @@ public class NetworkController
 {
     
     private final int PORT = 5023;
-    private final int TIMEOUT_MS = 100;
+    private final int TIMEOUT_MS = 50;
     private final int BUFFER_SIZE = 2048;
     
     private byte[] buffer;
@@ -40,20 +40,15 @@ public class NetworkController
     public void sendMessage(String chatter, String content) 
             throws SocketException, UnknownHostException, IOException
     {   
-        System.out.println("NW 1");
         byte[] temp = content.getBytes();
         this.packet.setData(temp);
         this.packet.setAddress(InetAddress.getByName(chatter));
         this.packet.setPort(PORT);
         
         this.SENDLOCK = true; // send operation intended
-        System.out.println("NW 2");
-        
         while (this.RECEIVELOCK); // wait until receive operation is over
-        System.out.println("NW 3");
         this.socket.send(this.packet);
         this.SENDLOCK = false; // send operation completed
-        System.out.println("NW 4");
     }
     
     public void receiveMessage() throws IOException, SocketTimeoutException
@@ -72,7 +67,7 @@ public class NetworkController
         
         try 
         {
-            Thread.sleep(50);
+            Thread.sleep(10);
         }
         catch (Exception ex) {}
         

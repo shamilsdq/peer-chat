@@ -87,7 +87,9 @@ public class App extends Application
                     return null;
                 }
             };
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> receiveMessageTask.cancel()));
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                receiveMessageTask.cancel();
+            }));
             new Thread(receiveMessageTask).start();
         }
         catch (SocketException ex)
@@ -117,14 +119,11 @@ public class App extends Application
     
     public static void sendMessage()
     {
-        System.out.println("APP 1");
         String chatter = gui.getChatter();
         String messageContent = gui.getMessage();
-        System.out.println("APP 2");
         
         if (messageContent.trim().length() == 0) return;
-        
-        System.out.println("APP 3");
+
         sendMessageTask = new Task<Void>() {
             @Override
             protected Void call() {
@@ -151,16 +150,11 @@ public class App extends Application
             }
         };
         
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> sendMessageTask.cancel()));
         new Thread(sendMessageTask).start();
-        
-        System.out.println("APP 4");
             
         Message message = new Message(messageContent, true);
         table.get(chatter).addMessage(message);
         gui.addMessage(chatter, message);
-        
-        System.out.println("APP 5");
     }
     
     public static void recieveMessage(String chatter, String messageContent)
@@ -184,8 +178,8 @@ public class App extends Application
     @Override
     public void stop()
     {
-        sendMessageTask.cancel();
-        receiveMessageTask.cancel();
+        if (receiveMessageTask != null && receiveMessageTask.isRunning())
+            receiveMessageTask.cancel();
         network.close();
     }
     
